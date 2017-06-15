@@ -1,9 +1,9 @@
 def cube_root(number)
   l = 0
   r = number
-  while l <= r
+  while(l <= r)
     m = (l + r)/2
-    if (m**3) == number
+    if((m**3) == number)
       root = m
       break 
     elsif (m**3) > number
@@ -16,13 +16,14 @@ def cube_root(number)
   if (root**3) == number
     return root
   elsif l == root
-    root = m-1
+    root = m - 1
   else
     root
   end
-    reminder = (number - (root**3))*1000
-    root = div_method(root, reminder)
+  reminder = (number - (root**3))*1000
+  root = div_method(root, reminder)
 end
+
 def div_method(r, rem)
   i = 1
   while i <=15
@@ -45,6 +46,6 @@ def finder(root, rem)
   set << ((((root*30)*(root*10 + (j-2))) + ((j-2)**2)) * (j-2))
   set
 end
-x = 2
+x = 10
 puts cube_root(x)
 puts Math.cbrt(x)
