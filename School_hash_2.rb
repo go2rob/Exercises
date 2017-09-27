@@ -17,7 +17,17 @@ students = school_hash.group_by{|h| h[:student]}.keys
 teachers = school_hash.group_by{|h| h[:teacher]}.keys
 
         # => 3. Display student marks in each subjects
-students.zip(school_hash.group_by{|h| h[:student]}.map { |k,v| (school_hash.group_by{|h| h[:subject]}.keys).zip(v.map{|h| [h[:mark1],h[:mark2]] }).to_h }).to_h
+students
+.zip(school_hash.group_by{
+        |h| h[:student]
+        }.map {
+         |k,v| (school_hash.group_by{
+                |h| h[:subject]
+                }.keys)
+         .zip(v.map{
+                |h| [h[:mark1],h[:mark2]] 
+                }).to_h 
+         }).to_h
 
         # => 4. Which teacher have the best success rate with students? ie what is the average marks by teacher?
-teachers.zip(school_hash.group_by{|h| h[:teacher]}.map { |k,v| v.collect { |h| (h[:mark1].to_i + h[:mark2].to_i)/2.0 } }.collect{ |arr| (arr.reduce(:+).to_f / arr.size).round(2)}).max_by{|a| a[1]}
+p teachers.zip(school_hash.group_by{|h| h[:teacher]}.map { |k,v| v.collect { |h| (h[:mark1].to_i + h[:mark2].to_i)/2.0 } }.collect{ |arr| (arr.reduce(:+).to_f / arr.size).round(2)}).max_by{|a| a[1]}

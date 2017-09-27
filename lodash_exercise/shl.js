@@ -34,26 +34,27 @@ function displayMarks(){
                  return o[0].mark1 + o[0].mark2 + "(" + o[0].mark1 + "+" + o[0].mark2 + ")";})); // acc.to requirements
         })
         .value();
-        str = JSON.stringify(studentMarks, null, 10); 
+        var str = JSON.stringify(studentMarks, null, 10); 
         alert(str);
 }
 
 //4. Which teacher have the best success rate with students? ie what is the average marks by teacher?
 function displayBest(){
-        var averageMarks = _.chain(school_hash)
-                .groupBy('teacher')
-                .mapValues(function(o){
-                        var sum = 0;
-                        var count = 0;
-                        for (var i = 0; i < _.size(o); i++) {
-                                sum = sum +o[i].mark1 + o[i].mark2;
-                                count = count + 2.0;
-                        }
-                        return sum/count;
-                })
-                .value();
+        var averageMarks = _
+        .chain(school_hash)
+        .groupBy('teacher')
+        .mapValues(function(o){
+            var sum = 0;
+            var count = 0;
+            for (var i = 0; i < _.size(o); i++) {
+                sum = sum +o[i].mark1 + o[i].mark2;
+                count = count + 2.0;
+            }
+        return sum/count;
+                }).value();
 
-        alert(Object.keys(averageMarks).reduce(function(a, b){
-            return averageMarks[a] > averageMarks[b] ? (a + " with " + averageMarks[a]) : (b + " with " + averageMarks[b]) 
-        }));
+        alert(Object.keys(averageMarks)
+            .reduce(function(a, b){
+                return averageMarks[a] > averageMarks[b] ? (a + " with " + averageMarks[a]) : (b + " with " + averageMarks[b])
+            }));
         }
